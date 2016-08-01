@@ -95,7 +95,11 @@
     <script src="./Public/js/ueditor/ueditor.config.js"></script>
     <script src="./Public/js/ueditor/ueditor.all.js"></script>
     <script>
-        var ue=UE.getEditor('content')
+        var ue=UE.getEditor('content',{
+            toolbars: [
+    ['fullscreen', 'source', 'undo', 'redo', 'bold','autotypeset','drafts','attachment','indent',]
+]
+        });
     </script>
 </body>
 
