@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Category Manage</title>
+	<!-- Bootstrap -->
+    <link href="./Public/css/bootstrap.css" rel="stylesheet">
+    <link href="./Public/css/admin.css" rel="stylesheet">
+    <link href="./Public/css/metisMenu.css" rel="stylesheet">
+    
+    <script src="./Public/js/modernizr.custom.63321.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+	<include file="Public/header" />
+	<div class="container main">
+		<div class="rows">
+			<!-- submenu start-->
+			<include file="Public/left" />
+			<!-- submenu end -->
+			<!-- main block start -->
+			<div class="col-sm-9 right">
+				<ol class="breadcrumb">
+				  <li><a href="#">Cal Admin</a></li>
+				  <li><a href="#">Category</a></li>
+				  <li class="active">Index</li>
+				</ol>
+				<!-- 管理子菜单 -->
+				<div class="submenu">
+					<a href="" class="btn btn-info">分类列表</a>
+					<a href="" class="btn btn-default">添加分类</a>
+				</div>
+				<!-- 管理子菜单 -->
+				<div class="widget">
+					<div class="head"><h3><span class="glyphicon glyphicon-plus"></span> 分类列表</h3></div>
+					<div class="body">
+					<form action="{:U('Category/sortCate')}" method="post">
+						<table class="table table-bordered table-hover">
+							<thead>
+								<tr>
+									<th>id		</th>
+									<th>level		</th>
+									<th>name	</th>
+									<th>status	</th>
+									<th>sorts	</th>
+									<th>option 	</th>
+								</tr>
+							</thead>
+							<tbody>
+								<foreach name="cate" item="v">
+									<if condition="$v['level'] eq 1">
+										<tr class="info">
+									<else />
+										<tr>
+									</if>
+								
+									<td>{$v.id}</td>
+									<td>{$v.level}</td>
+									<td>{$v.html}{$v.name}</td>
+									<td>{$v.status}</td>
+									<td><input type="text" name="{$v.id}" value="{$v.sort}" class="sort" ></td>
+									<td>
+										<a href="{:U('Category/add',array('pid'=>$v["id"]))}" class="btn btn-link ">添加子类</a>
+										<a href="{:U('Category/edit',array('id'=>$v["id"]))}" class="btn btn-link">修改</a>
+										<a href="#" class="btn btn-link">禁用</a></td>
+								</tr>
+								</foreach>
+							</tbody>
+						</table>
+						<input type="submit" value="更新排序" class="btn btn-default">
+						</form>
+					</div>
+					<div class="foot"></div>
+				</div>
+			</div>
+			<!-- main block end -->
+		</div>
+	</div>
+	<include file="Public/footer" />
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./Public/js/bootstrap.min.js"></script>
+	<script src="./Public/js/metisMenu.js"></script>
+	<script>
+	    $(function () {
+	        $('#menu').metisMenu();
+	    });
+	</script>
+
+	
+</body>
+</html>

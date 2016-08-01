@@ -1,0 +1,151 @@
+body{
+	background-color: #F1F1F1;
+	/*font-family: "Microsoft Yahei","simsun";*/
+	font-family: "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+	
+}
+
+/*布局*/
+#header{
+	background-color: #fff;
+	font-size: 18px;
+	height:174px;
+
+
+}
+#top{
+	padding-top: 54px;
+	
+}
+#logo{
+	height:68px;
+	margin-top:30px;
+}
+
+#right{
+	border: 1px solid #B8C4C5;
+	border-top: none;
+	
+	background-color: #fff;
+	padding: 10px;
+}
+#footer{
+	background-color: #fff;
+	border-top: 1px solid #B8C4C5;
+	padding:40px;
+	margin-top:20px;
+	text-align: center;
+
+}
+
+#right .btn{
+	margin-bottom: 5px;
+}
+
+
+/*公用微调*/
+.top20{
+	margin-top:20px; 
+}
+
+.thumbnail .info{
+	border-top: 1px solid #e2e2d2;
+	padding:8px;
+}
+.list .thumbnail .caption{
+	height:200px;
+	overflow: hidden;
+}
+
+#main{
+	background-color: #fff;
+	padding-top: 20px;
+}
+.subnav{
+	margin-bottom: 20px;
+}
+
+/*用户首页mk*/
+.mk{
+	border: 1px solid #ccc;
+	margin-bottom:20px;
+
+}
+
+.table > tbody > tr > td{
+	vertical-align: middle;
+}
+/*.table > tbody > tr > td.listsort{
+	padding:0px;
+	height: 33px;
+	line-height: 1;
+}
+.listsort input{
+	height: 30px;
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*改写原样式*/
+.navbar{
+	border: none;
+}
+.navbar-nav>li>a{
+	line-height: normal;
+}
+.navbar-inverse{
+	background-color: #8E44AD;
+	
+}
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>.active>a:focus {
+color: #fff;
+background-color: #9B59B6;
+/*height:50px;*/
+}
+.navbar-inverse .navbar-nav>li>a {
+color: #cc9;
+}
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a:focus {
+  color: #fff;
+  background-color: #9B59B6;
+  /*height: 50px;*/
+}
+.dropdown-menu{
+	background-color: #9B59B6;
+	border: none;
+	width: 100%;
+	padding:10px;
+}
+.dropdown-menu > li > a{
+	color:#fff;
+
+}
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{
+
+}
+.navbar-right{
+	padding-right: 10px;
+}

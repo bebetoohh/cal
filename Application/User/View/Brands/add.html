@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>校园日历-Compus Calender</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="./Public/css/bootstrap.css">
+    <link rel="stylesheet" href="./Public/css/user.css">
+    <link rel="stylesheet" href="./Public/js/uploadify/uploadify.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <include file="Public/header" />
+    <!-- 正文 开始 -->
+    <div class="container top20">
+        <div class="row">
+            <div class="col-md-9" id="main" style="background-color: #fff;">
+                <div class="data">
+                <h3>新增品牌 <small>品牌（系列活动）仅对活动有效，对通知无效。</small></h3>
+                    <!-- 发布通知 开始 -->
+                    <form class="form-horizontal" method="post" id="cal-form">
+                        <div class="form-group">
+                            <label for="department" class="col-sm-2 control-label">*所属单位</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="department" placeholder="所属单位" value="{$_SESSION['calUser']['department']|getDepartmentById}" disabled="disabled">
+                                <input type="hidden" name="did" id="did" value="{$_SESSION['calUser']['department']}">
+                                <span>只能管理本单位下的品牌</span>   
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">*品牌名称</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="name" id="name" placeholder="通知标题" value="科学传播暑期社会研修班通知">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="content" class="col-sm-2 control-label">*基本介绍</label>
+                            <div class="col-sm-10">
+                                <textarea name="content" id="content" cols="30" rows="3" class="form-control" placeholder="不要超过200字">这里应该放简介</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="title" class="col-sm-2 control-label">*品牌标志</label>
+                            <div class="col-sm-10">
+                                <input type="file" id="file_upload" multiple="true">
+                                <img src="" style="display:none;" id="upload_org_code_img" alt="">
+                                <input type="hidden" id="file_upload_image" name="thumb" multiple="true" value=" ">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <input type="hidden" name="uid" value="{$_SESSION['calUser']['uid']}">
+                                <button type="button" class="btn btn-default" id="cal-button-submit">新增数据</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- 发布通知 结束 -->
+                </div>
+            </div>
+            <!-- 正文>右侧 开始 -->
+            <include file="Public/right" />
+            <!-- 正文>右侧 结束 -->
+        </div>
+    </div>
+    <!-- 正文 结束 -->
+    <include file="Public/footer" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script>
+    var SCOPE = {
+        'save_url': '{:U("Brands/add")}',
+        'jump_url': '{:U("Brands/index")}',
+        'ajax_upload_image_url':'{:U("Image/ajaxuploadimage")}',
+        'ajax_upload_swf':'/Public/js/uploadify/uploadify.swf',
+    }
+    </script>
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./Public/js/bootstrap.min.js"></script>
+    <script src="./Public/js/dialog/layer.js"></script>
+    <script src="./Public/js/dialog.js"></script>
+    <script src="./Public/js/user/common.js"></script>
+    <script src="./Public/js/uploadify/jquery.uploadify.js"></script>
+    <script src="./Public/js/user/image.js"></script>
+</body>
+
+</html>

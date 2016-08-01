@@ -1,0 +1,33 @@
+/*全局以及重写BS*/
+body{background-color: #F1F1F1;font-family: "Microsoft Yahei","simsun";}
+
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+  padding: 8px;
+  line-height: 1.42857143;
+  vertical-align: middle;
+  /* vertical-align: top; */
+  border-top: 1px solid #ddd;
+}
+
+/*头部 header*/
+.header{color: #fff;background-color: #333;padding-bottom: 20px;}
+/*主体 main*/
+.main{background-color: #fff;padding:20px 20px 20px 0;}
+.main .right{background-color: #fff;padding:20px;border: 1px solid #ddd;border-radius: 4px;}
+.main .submenu{margin-bottom: 20px;text-align: right;}
+/*widget*/
+.widget{border:1px solid #efefef;border-radius: 4px;}
+.widget>.head{border-bottom: 1px solid #efefef;}
+.widget>.head>h3{font-size: 18px;margin-top: 0px;padding:10px;margin-bottom: 0;color:#666;}
+
+.widget>.body{min-height: 120px;padding: 10px;}
+
+.widget>.body .sort{width: 40px;}
+
+/*底部 footer*/
+.footer{color:#fff;border-top:1px solid #ddd;padding:20px;text-align: center;background-color: #333}

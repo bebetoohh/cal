@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>校园日历-Compus Calender</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="./Public/css/bootstrap.css">
+    <link rel="stylesheet" href="./Public/css/user.css">
+    <link rel="stylesheet" href="./Public/css/calendar.css" />
+    <link rel="stylesheet" href="./Public/css/custom_2.css" />
+    <script src="./Public/js/modernizr.custom.63321.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <include file="Public/header" />
+    <!-- 正文 开始 -->
+    <div class="container top20">
+        <div class="row">
+            <div class="col-md-9" id="main">
+                <div class="data">
+                    <!-- 活动预告表单 开始 -->
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">活动类型</label>
+                            <div class="col-sm-10">
+                                <label class="radio-inline">
+                                    <input type="radio" name="cid" id="cid1" value="1"> 学术
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="cid" id="cid2" value="2"> 文化
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="cid" id="cid3" value="3"> 其他
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="bid" class="col-sm-2 control-label">品牌/栏目</label>
+                            <div class="col-sm-3">
+                                <select class="form-control" id="bid" name="bid">
+                                    <option>请选择……</option>
+                                    <volist name="brands" id="vo">
+                                        <option value="{$vo.bid}">{$vo.name}</option>
+                                    </volist>
+                                </select>
+                                <a href="{:U('Brands/index')}">管理自有品牌/栏目</a>
+                            </div>
+                            <label for="bno" class="col-sm-2 control-label">期数</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" name="bno" id="bno" placeholder="填写期号">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="title" class="col-sm-2 control-label">活动名称</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="title" id="title" placeholder="中国经济走向分析">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">上传或选择题图</label>
+                            <div class="col-sm-10">
+                                <input type="file" class="form-control" id="inputPassword3" placeholder="Password"><span>尺寸为：800px*450px</span>
+                                <div class="row radio-pic" style="padding-top: 20px;">
+                                    <div class="col-sm-3">
+                                        <label class="thumbnail">
+                                            <img src="__PUBLIC__/img/pic1.jpg" alt="...">
+                                            <input type="radio" name="tt"> 学术活动
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label class="thumbnail">
+                                            <img src="__PUBLIC__/img/pic2.jpg" alt="...">
+                                            <input type="radio" name="tt"> 学术活动
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label class="thumbnail">
+                                            <img src="__PUBLIC__/img/pic3.jpg" alt="...">
+                                            <input type="radio" name="tt"> 学术活动
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label class="thumbnail">
+                                            <img src="__PUBLIC__/img/pic4.jpg" alt="...">
+                                            <input type="radio" name="tt"> 学术活动
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label class="thumbnail">
+                                            <img src="__PUBLIC__/img/pic5.jpg" alt="...">
+                                            <input type="radio" name="tt"> 学术活动
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label class="thumbnail">
+                                            <img src="__PUBLIC__/img/pic6.jpg" alt="...">
+                                            <input type="radio" name="tt"> 学术活动
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label class="thumbnail">
+                                            <img src="__PUBLIC__/img/pic1.jpg" alt="...">
+                                            <input type="radio" name="tt"> 学术活动
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label class="thumbnail">
+                                            <img src="__PUBLIC__/img/pic2.jpg" alt="...">
+                                            <input type="radio" name="tt"> 学术活动
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">活动海报</label>
+                            <div class="col-sm-10">
+                                <input type="file" class="form-control" id="inputPassword3">
+                                <span>尺寸为：800px宽，大小不超过1024K</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">活动内容</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">摘要</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">承办单位</label>
+                            <div class="col-sm-10">
+                                <select class="form-control">
+                                    <option>请选择……</option>
+                                    <option>文法学院</option>
+                                    <option>校团委</option>
+                                    <option>狮子山艺苑</option>
+                                    <option>————————————</option>
+                                    <option value="">学术活动</option>
+                                    <option value="">文艺活动</option>
+                                    <option value="">体育活动</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">主办单位</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" placeholder="如不填，默认为承办单位">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">活动时间</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" placeholder="如不填，默认为承办单位">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">活动地点</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" placeholder="如不填，默认为承办单位">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"> Remember me
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default">Sign in</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- 活动预报表单 结束 -->
+                </div>
+            </div>
+            <!-- 正文>右侧 开始 -->
+            <include file="Public/right" />
+            <!-- 正文>右侧 结束 -->
+        </div>
+    </div>
+    <!-- 正文 结束 -->
+    <include file="Public/footer" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./Public/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./Public/js/jquery.calendario.js"></script>
+    <script type="text/javascript" src="./Public/js/data.js"></script>
+    <script type="text/javascript">
+    $(function() {
+
+        var transEndEventNames = {
+                'WebkitTransition': 'webkitTransitionEnd',
+                'MozTransition': 'transitionend',
+                'OTransition': 'oTransitionEnd',
+                'msTransition': 'MSTransitionEnd',
+                'transition': 'transitionend'
+            },
+            transEndEventName = transEndEventNames[Modernizr.prefixed('transition')],
+            $wrapper = $('#custom-inner'),
+            $calendar = $('#calendar'),
+            cal = $calendar.calendario({
+                onDayClick: function($el, $contentEl, dateProperties) {
+
+                    if ($contentEl.length > 0) {
+                        showEvents($contentEl, dateProperties);
+                    }
+
+                },
+                caldata: codropsEvents,
+                displayWeekAbbr: true
+            }),
+            $month = $('#custom-month').html(cal.getMonthName()),
+            $year = $('#custom-year').html(cal.getYear());
+
+        $('#custom-next').on('click', function() {
+            cal.gotoNextMonth(updateMonthYear);
+        });
+        $('#custom-prev').on('click', function() {
+            cal.gotoPreviousMonth(updateMonthYear);
+        });
+
+        function updateMonthYear() {
+            $month.html(cal.getMonthName());
+            $year.html(cal.getYear());
+        }
+
+        // just an example..
+        function showEvents($contentEl, dateProperties) {
+
+            hideEvents();
+
+            var $events = $('<div id="custom-content-reveal" class="custom-content-reveal"><h4>Events for ' + dateProperties.monthname + ' ' + dateProperties.day + ', ' + dateProperties.year + '</h4></div>'),
+                $close = $('<span class="custom-content-close"></span>').on('click', hideEvents);
+
+            $events.append($contentEl.html(), $close).insertAfter($wrapper);
+
+            setTimeout(function() {
+                $events.css('top', '0%');
+            }, 25);
+
+        }
+
+        function hideEvents() {
+
+            var $events = $('#custom-content-reveal');
+            if ($events.length > 0) {
+
+                $events.css('top', '100%');
+                Modernizr.csstransitions ? $events.on(transEndEventName, function() {
+                    $(this).remove();
+                }) : $events.remove();
+
+            }
+
+        }
+
+    });
+    </script>
+</body>
+
+</html>

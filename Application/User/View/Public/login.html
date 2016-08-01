@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>校园日历-Compus Calender</title>
+    <!-- Bootstrap -->
+    <link href="./Public/css/bootstrap.css" rel="stylesheet">
+    <link href="./Public/css/home.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <include file="Home@Public/header" />
+    <!-- 正文 开始 -->
+    <div class="container top20">
+        <div class="row">
+            <div class="col-md-9" id="main">
+                <h4>登陆</h4>
+                <form class="form-horizontal" action="" method="post">
+                    <div class="form-group">
+                        <label for="account" class="col-sm-2 control-label">一卡通</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="account" id="account" placeholder="请输入一卡通或邮箱">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="col-sm-2 control-label">密码</label>
+                        <div class="col-sm-4">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="verify" class="col-sm-2 control-label">验证码</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="verify" name="verify" placeholder="请输入右侧验证码">
+                        </div>
+                        <div class="col-sm-4"><img class="verifyimg reloadverify" alt="点击切换" src="{:U('Public/verify')}" style="cursor:pointer;"></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="button" class="btn btn-default" onclick="login.check()">登陆</button><a href="{:U('Public/reg')}" class="btn">还没有账号？马上注册！</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- 正文>右侧 开始 -->
+            <include file="Public/right" />
+            <!-- 正文>右侧 结束 -->
+        </div>
+    </div>
+    <!-- 正文 结束 -->
+    <div id="footer">
+        <div class="container">
+            <p class="text-muted">华中农业大学新闻中心旗下网站</p>
+        </div>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/Public/js/bootstrap.min.js"></script>
+    <script src="/Public/js/dialog/layer.js"></script>
+    <script src="/Public/js/dialog.js"></script>
+    <script src="/Public/js/user/login.js"></script>
+</body>
+
+</html>

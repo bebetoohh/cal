@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>校园日历-Compus Calender</title>
+	<!-- Bootstrap -->
+    <link href="./Public/css/bootstrap.css" rel="stylesheet">
+    <link href="./Public/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./Public/css/calendar.css" />
+    <link rel="stylesheet" type="text/css" href="./Public/css/custom_2.css" />
+    <script src="./Public/js/modernizr.custom.63321.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+  <include file="Public/header" />
+	<!-- 正文 开始 -->
+	<div class="container top20">
+		<div class="row">
+			<div class="col-md-9" id="main">
+				<h4>登陆</h4>
+        <form class="form-horizontal" action="" method="post">
+                        
+                        <div class="form-group">
+                          <label for="inputEmail3" class="col-sm-2 control-label">一卡通</label>
+                          <div class="col-sm-4">
+                            <input type="text" class="form-control" id="ecard" name="ecard" value="1050403111" placeholder="请输入用户名或一卡通号">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+                          <div class="col-sm-4">
+                            <input type="password" class="form-control" id="password" name="password" value="123456">
+                            
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="inputPassword3" class="col-sm-2 control-label">密码确认</label>
+                          <div class="col-sm-4">
+                            <input type="password" class="form-control" id="repassword" name="repassword" value="123456">
+                            
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="inputPassword3" class="col-sm-2 control-label">姓名</label>
+                          <div class="col-sm-4">
+                            <input type="text" class="form-control" id="name" name="name" value="王五">
+                            
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="inputPassword3" class="col-sm-2 control-label">邮箱</label>
+                          <div class="col-sm-4">
+                            <input type="text" class="form-control" id="email" name="email" value="bebetoo@qq.com">
+                            
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="inputPassword3" class="col-sm-2 control-label">单位</label>
+                          <div class="col-sm-4">
+                            <input type="text" class="form-control" id="department" name="department">
+                            
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="inputPassword3" class="col-sm-2 control-label">验证码</label>
+                          <div class="col-sm-4">
+                            <input type="password" class="form-control" id="verify" name="verify">
+                            
+                          </div>
+                        </div>
+                        
+   
+
+                        <div class="form-group">
+                          <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">注册</button><a href="{:U('Public/login')}" class="btn">已经有账号了？立即登陆！</a>
+                          </div>
+                        </div>
+                      </form>
+
+
+			</div>
+  			<!-- 正文>右侧 开始 -->
+  			<include file="Public/right" />
+  			<!-- 正文>右侧 结束 -->
+		</div>
+	</div>
+	<!-- 正文 结束 -->
+	<div id="footer">
+      <div class="container">
+        <p class="text-muted">华中农业大学新闻中心旗下网站</p>
+      </div>
+    </div>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./Public/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="./Public/js/jquery.calendario.js"></script>
+    <script type="text/javascript" src="./Public/js/data.js"></script>
+    <script type="text/javascript"> 
+      $(function() {
+      
+        var transEndEventNames = {
+            'WebkitTransition' : 'webkitTransitionEnd',
+            'MozTransition' : 'transitionend',
+            'OTransition' : 'oTransitionEnd',
+            'msTransition' : 'MSTransitionEnd',
+            'transition' : 'transitionend'
+          },
+          transEndEventName = transEndEventNames[ Modernizr.prefixed( 'transition' ) ],
+          $wrapper = $( '#custom-inner' ),
+          $calendar = $( '#calendar' ),
+          cal = $calendar.calendario( {
+            onDayClick : function( $el, $contentEl, dateProperties ) {
+
+              if( $contentEl.length > 0 ) {
+                showEvents( $contentEl, dateProperties );
+              }
+
+            },
+            caldata : codropsEvents,
+            displayWeekAbbr : true
+          } ),
+          $month = $( '#custom-month' ).html( cal.getMonthName() ),
+          $year = $( '#custom-year' ).html( cal.getYear() );
+
+        $( '#custom-next' ).on( 'click', function() {
+          cal.gotoNextMonth( updateMonthYear );
+        } );
+        $( '#custom-prev' ).on( 'click', function() {
+          cal.gotoPreviousMonth( updateMonthYear );
+        } );
+
+        function updateMonthYear() {        
+          $month.html( cal.getMonthName() );
+          $year.html( cal.getYear() );
+        }
+
+        // just an example..
+        function showEvents( $contentEl, dateProperties ) {
+
+          hideEvents();
+          
+          var $events = $( '<div id="custom-content-reveal" class="custom-content-reveal"><h4>Events for ' + dateProperties.monthname + ' ' + dateProperties.day + ', ' + dateProperties.year + '</h4></div>' ),
+            $close = $( '<span class="custom-content-close"></span>' ).on( 'click', hideEvents );
+
+          $events.append( $contentEl.html() , $close ).insertAfter( $wrapper );
+          
+          setTimeout( function() {
+            $events.css( 'top', '0%' );
+          }, 25 );
+
+        }
+        function hideEvents() {
+
+          var $events = $( '#custom-content-reveal' );
+          if( $events.length > 0 ) {
+            
+            $events.css( 'top', '100%' );
+            Modernizr.csstransitions ? $events.on( transEndEventName, function() { $( this ).remove(); } ) : $events.remove();
+
+          }
+
+        }
+      
+      });
+
+      $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+    </script>
+</body>
+</html>

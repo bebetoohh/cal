@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>校园日历-Compus Calender</title>
+    <!-- Bootstrap -->
+    <link href="./Public/css/bootstrap.css" rel="stylesheet">
+    <link href="./Public/css/user.css" rel="stylesheet">
+    <link rel="stylesheet" href="./Public/css/font-awesome.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <include file="Public/header" />
+    <!-- 正文 开始 -->
+    <div class="container top20">
+        <div class="row">
+            <div class="col-md-9" id="main">
+                <!-- 用户管理子菜单 开始-->
+                <div class="subnav">
+                    <a href="{:U('Brands/add')}" class="btn btn-default"><i class="fa fa-plus"></i> 添加新的</a>
+                </div>
+                <!-- 用户管理子菜单 结束-->
+                <div class="data">
+                    <!-- 显示已发布的信息列表 -->
+                    <table class="table table-bordered cal-table-list">
+                        <thead>
+                            <tr>
+                                <th width="7%">排序</th>
+                                <th width="3%">BID</th>
+                                <th width="40%">品牌名（系列活动）</th>
+                                <th width="10%">品牌图片</th>
+                                <th width="10%">状态</th>
+                                <th width="30%">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <volist name="list" id="vo">
+                                <tr>
+                                    <td class="listsort">
+                                        <input type='text' class="form-control " name='listorder[{$vo.bid}]' value="{$vo.listorder}" />
+                                    </td>
+                                    <td>{$vo.bid}</td>
+                                    <td>{$vo.name}</td>
+                                    <td>
+                                        <button type="button" class="btn  btn-danger" data-toggle="tooltip" title='<img src="{$vo.thumb}" />' data-html="true" data-placement="auto"><i class="fa fa-photo"></i></button>
+                                        <td>
+                                            <button type="button" class="btn btn-default" attr-status='<if condition="$vo['status'] eq 1">0<else/>1</if>' attr-id="{$vo.bid}" class="sing_cursor cal-on-off" id="cal-on-off" data-toggle="tooltip" title='<if condition="$vo[' status '] eq 1">点击关闭<else/>点击开启</if>'>{$vo.status|status}</button>
+                                        </td>
+                                        <td>
+                                            <a href="" class="btn btn-link"><i class="fa fa-list"></i> 列表</a>
+                                            <a href="{:U('Brands/edit',array('bid'=>$vo['bid']))}" class="btn btn-link"><i class="fa fa-edit"></i> 修改</a>
+                                            <button type="button" class="btn btn-link" id="cal-delete" attr-id="{$vo.bid}" attr-message="删除"><i class="fa fa-trash-o"></i> 删除</button>
+                                        </td>
+                                </tr>
+                            </volist>
+                        </tbody>
+                    </table>
+                    <div>
+                        <button class="btn btn-default"><i class="fa fa-sort-amount-desc"></i> 更新排序</button>
+                        <button class="btn btn-default"><i class="fa fa-trash-o"></i> 回收站</button>
+                    </div>
+                    <nav>
+                        <ul class="pagination">
+                            {$pageres}
+                        </ul>
+                    </nav>
+                </div>
+                <!-- 推荐区 开始 -->
+                <!-- 推荐区 结束 -->
+                <!-- 列表区 开始 -->
+                <div class="list row">
+                </div>
+                <!-- 列表区 结束 -->
+            </div>
+            <!-- 正文>右侧 开始 -->
+            <include file="Public/right" />
+            <!-- 正文>右侧 结束 -->
+        </div>
+    </div>
+    <!-- 正文 结束 -->
+    <div id="footer">
+        <div class="container">
+            <p class="text-muted">华中农业大学新闻中心旗下网站</p>
+        </div>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./Public/js/bootstrap.min.js"></script>
+    <script src="./Public/js/dialog/layer.js"></script> 
+    <script src="./Public/js/dialog.js"></script>
+    <script src="./Public/js/user/common.js"></script>
+    <script>
+    var SCOPE = {
+        // 'edit_url': '/admin.php?m=Admin&c=Content&a=edit',
+        // 'add_url': '/admin.php?c=content&a=add',
+        'set_status_url': '{:U("Brands/setStatus")}',
+        // 'sing_news_view_url': '/index.php?c=view',
+        // 'listorder_url': '/admin.php?m=Admin&c=Content&a=listorder',
+        // 'push_url': '/admin.php?m=Admin&c=Content&a=push',
+    }
+
+    $(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+</body>
+
+</html>

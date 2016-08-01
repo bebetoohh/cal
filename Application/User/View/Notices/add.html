@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>校园日历-Compus Calender</title>
+    <!-- Bootstrap -->
+    <link href="./Public/css/bootstrap.css" rel="stylesheet">
+    <link href="./Public/css/user.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <include file="Public/header" />
+    <!-- 正文 开始 -->
+    <div class="container top20">
+        <div class="row">
+            <div class="col-md-9" id="main" style="background-color: #fff;">
+                <div class="data">
+                    <!-- 发布通知 开始 -->
+                    <form class="form-horizontal" method="post" id="cal-form">
+                    <div class="form-group">
+                        <label for="department" class="col-sm-2 control-label">*所属单位</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="department" placeholder="所属单位" value="{$_SESSION['calUser']['department']|getDepartmentById}" disabled="disabled">
+                            <input type="hidden" name="did" id="did" value="{$_SESSION['calUser']['department']}">
+                        </div>
+                    </div>
+                        <div class="form-group">
+                            <label for="title" class="col-sm-2 control-label">*通知标题</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="title"  id="title" placeholder="通知标题" value="科学传播暑期社会研修班通知">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="content" class="col-sm-2 control-label">*通知正文</label>
+                            <div class="col-sm-10">
+                            <script id="content" name="content" type="text/plain"></script>
+                       
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="content_sign" class="col-sm-2 control-label">通知署名时间</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" rows="3" name="content_sign" id="content_sign" placeholder="本内容会出现在正文最后右对齐">华中农业大学宣传部</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="attachment" class="col-sm-2 control-label">通知附件</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="attachment" id="attachment" placeholder="中国经济走向分析">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="endtime" class="col-sm-2 control-label">*有效期限</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" id="endtime" name="endtime" placeholder="中国经济走向分析">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="button" class="btn btn-default" id="cal-button-submit">新增数据</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- 发布通知 结束 -->
+                </div>
+            </div>
+            <!-- 正文>右侧 开始 -->
+            <include file="Public/right" />
+            <!-- 正文>右侧 结束 -->
+        </div>
+    </div>
+    <!-- 正文 结束 -->
+    <include file="Public/footer" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script>
+      var SCOPE = {
+          'save_url' : '{:U("Notices/add")}',
+          'jump_url' : '{:U("Notices/index")}',
+      }
+    </script>
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./Public/js/bootstrap.min.js"></script>
+    <script src="./Public/js/dialog/layer.js"></script>
+    <script src="./Public/js/dialog.js"></script>
+    <script src="./Public/js/user/common.js"></script>
+
+    <script src="./Public/js/ueditor/ueditor.config.js"></script>
+    <script src="./Public/js/ueditor/ueditor.all.js"></script>
+    <script>
+        var ue=UE.getEditor('content')
+    </script>
+</body>
+
+</html>

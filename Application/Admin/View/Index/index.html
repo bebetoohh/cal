@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Cal Admin Panel</title>
+	<!-- Bootstrap -->
+    <link href="./Public/css/bootstrap.css" rel="stylesheet">
+    <link href="./Public/css/admin.css" rel="stylesheet">
+    <link href="./Public/css/metisMenu.css" rel="stylesheet">
+        
+    
+    
+    <script src="./Public/js/modernizr.custom.63321.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+	<include file="Public/header" />
+	<div class="container main">
+		<div class="rows">
+			<!-- submenu start-->
+			<include file="Public/left" />
+			<!-- submenu end -->
+			<!-- main block start -->
+			<div class="col-sm-9 right">
+				<ol class="breadcrumb">
+				  <li><a href="#">Cal Admin</a></li>
+				  <li><a href="#">Home</a></li>
+				  <li class="active">Index</li>
+				</ol>
+				<div class="widget">
+					<div class="head"><h3><span class="glyphicon glyphicon-plus"></span> 说明</h3></div>
+					<div class="body">
+						<p>Category-管理系统定义栏目以及审核用户添加的栏目</p>
+						<p>User-审核用户、审核二级审核员</p>
+					</div>
+					<div class="foot"></div>
+				</div>
+			</div>
+			<!-- main block end -->
+		</div>
+	</div>
+	<include file="Public/footer" />
+	<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+	<script src="./Public/js/bootstrap.min.js"></script>
+	<script src="./Public/js/metisMenu.js"></script>
+	<script>
+	    $(function () {
+	        $('#menu').metisMenu();
+	    });
+	</script>
+</body>
+</html>
