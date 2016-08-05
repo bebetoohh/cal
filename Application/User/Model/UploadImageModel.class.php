@@ -6,12 +6,12 @@ class UploadImageModel extends Model{
 	private $_uploadObj = '';
 	private $_uploadImageData = '';
 
-	const UPLOAD = 'upload';  //定义上传的文件夹
+	const UPLOAD = 'upload/thumb';  //定义上传的文件夹
 
 	public function __construct(){
 		$this->_uploadObj = new \Think\upload();
 		$this->_uploadObj->rootPath = './'.self::UPLOAD.'/';   
-		$this->_uploadObj->subName = date(Y) .'/'. date(m) .'/'. date(d) ; //上传文件夹的命名方式
+		$this->_uploadObj->subName = date(Y) .'/'. date(m)  ; //上传文件夹的命名方式
 	}
 
 	public function upload(){

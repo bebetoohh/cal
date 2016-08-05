@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>校园日历-Compus Calender</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="./Public/css/bootstrap.css">
+    <link rel="stylesheet" href="./Public/css/user.css">
+    <link rel="stylesheet" href="./Public/css/font-awesome.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <include file="Public/header" />
+    <!-- 正文 开始 -->
+    <div class="container top20">
+        <div class="row">
+            <div class="col-md-9" id="main">
+                <div class="data">
+                    <!-- 显示已发布的信息列表 -->
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>类型</th>
+                                <th>标题</th>
+                                <th>endtime</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <volist name="list" id="vo">
+                                <tr>
+                                    <td>{$vo.id}</td>
+                                    <td>{$vo.modelName}</td>
+                                    <td>{$vo.title}</td>
+                                    <td>{$vo.endtime}</td>
+                                    <td>
+                                        <if condition="$vo['status'] eq 0"> <button type="button" class="btn btn-default">待审</button>
+                                        <elseif condition="$vo['status'] eq 1" /> <button class="btn btn-success">过审</button>
+                                        <elseif condition="$vo['status'] eq 2" /> <button class="btn btn-warning">过期</button>
+                                        </if>
+                                    </td>
+                                    <td>
+                                        <a href="{:U($vo['modelName'].'/edit',array('id'=>$vo['id']))}" class="btn btn-link"><i class="fa fa-edit"></i> 修改</a>
+                                        <button type="button" class="btn btn-link" id="cal-delete" attr-id="{$vo.bid}" attr-message="删除"><i class="fa fa-trash-o"></i> 删除</button>
+                                    </td>
+                                </tr>
+                            </volist>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- 推荐区 开始 -->
+                <!-- 推荐区 结束 -->
+                <!-- 列表区 开始 -->
+                <div class="list row">
+                </div>
+                <!-- 列表区 结束 -->
+            </div>
+            <!-- 正文>右侧 开始 -->
+            <include file="Public/right" />
+            <!-- 正文>右侧 结束 -->
+        </div>
+    </div>
+    <!-- 正文 结束 -->
+    <div id="footer">
+        <div class="container">
+            <p class="text-muted">华中农业大学新闻中心旗下网站</p>
+        </div>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./Public/js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./Public/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

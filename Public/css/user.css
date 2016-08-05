@@ -133,6 +133,9 @@ color: #cc9;
   background-color: #9B59B6;
   /*height: 50px;*/
 }
+.navbar-fixed-top{
+	z-index: 1000;
+}
 .dropdown-menu{
 	background-color: #9B59B6;
 	border: none;

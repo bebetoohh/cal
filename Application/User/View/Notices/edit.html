@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>校园日历-Compus Calender</title>
+    <!-- Bootstrap -->
+    <link href="./Public/css/bootstrap.css" rel="stylesheet">
+    <link href="./Public/css/user.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <include file="Public/header" />
+    <!-- 正文 开始 -->
+    <div class="container top20">
+        <div class="row">
+            <div class="col-md-9" id="main" style="background-color: #fff;">
+                <div class="data">
+                    <h3>修改通知 <small>修改已经审核通过的内容，将需要重新审核才能前台显示</small></h3>
+                    <!-- 发布通知 开始 -->
+                    <form class="form-horizontal" method="post" id="cal-form">
+                        <div class="form-group">
+                            <label for="department" class="col-sm-2 control-label">*所属单位</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="department" placeholder="所属单位" value="{$content['did']|getDepartmentById}" disabled="disabled">
+                                <input type="hidden" name="did" id="did" value="{$content['did']}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="title" class="col-sm-2 control-label">*通知标题</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="title" id="title" placeholder="通知标题" value="{$content.title}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="content" class="col-sm-2 control-label">*通知正文</label>
+                            <div class="col-sm-10">
+                                <script id="content" name="content" type="text/plain"></script>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="limitday" class="col-sm-2 control-label">*有效天数{$vo.limitday}</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="limitday" id="limitday">
+                                <for start="1" end="14">
+                                    <option value="{$i}" <if condition="$content['limitday'] eq $i">selected="selected"</if> >{$i}天</option>
+                                </for>
+                                  <option value="30">30天</option>
+                                  <!-- <option value="60">60</option> -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <input type="hidden" name="model" value="2">
+                                <input type="hidden" name="uid" value="{$content.uid}">
+                                <input type="hidden" name="id" value="{$content.id}">
+                                <input type="hidden" name="create_time" value="{$content.create_time}">
+                                <button type="button" class="btn btn-default" id="cal-button-submit">更新数据</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- 发布通知 结束 -->
+                </div>
+            </div>
+            <!-- 正文>右侧 开始 -->
+            <include file="Public/right" />
+            <!-- 正文>右侧 结束 -->
+        </div>
+    </div>
+    <!-- 正文 结束 -->
+    <include file="Public/footer" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script>
+    var SCOPE = {
+        'save_url': '{:U("Notices/add")}',
+        'jump_url': '{:U("Index/contentlist")}',
+    }
+    </script>
+    <script src="./Public/js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./Public/js/bootstrap.min.js"></script>
+    <script src="./Public/js/dialog/layer.js"></script>
+    <script src="./Public/js/dialog.js"></script>
+    <script src="./Public/js/user/common.js"></script>
+    <script src="./Public/js/ueditor/ueditor.config.js"></script>
+    <script src="./Public/js/ueditor/ueditor.all.js"></script>
+    <script>
+    var ue = UE.getEditor('content', {
+        // toolbars: [
+        //     ['fullscreen', 'source', 'undo', 'redo', 'bold', 'autotypeset', 'drafts', 'attachment', 'indent', ]
+        // ],
+        // serverUrl:'/Public/js/ueditor/php/controller.php'
+        serverUrl:'{:U("Upload/index")}',
+
+    });
+    ue.ready(function() {
+        //设置编辑器的内容
+        ue.setContent('{$content.content|htmlspecialchars_decode}');
+        //获取html内容，返回: <p>hello</p>
+        // var html = ue.getContent();
+        //获取纯文本内容，返回: hello
+        // var txt = ue.getContentTxt();
+    });
+    </script>
+</body>
+
+</html>

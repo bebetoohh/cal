@@ -9,10 +9,13 @@ class IndexController extends CommonController {
 		
         $this->display();
     }
-    public function addEvents(){
-    	$this->display();
-    }
-    public function addNotices(){
-    	$this->display();
+    public function contentlist(){
+        $result = D("Content")->getByUserId(session('calUser.uid'));
+        foreach ($result as $key => $value) {
+        	$result[$key]['modelName'] = getModelById($result[$key]['model']);
+        }
+        $this->assign('list',$result);
+        $this->display();
+
     }
 }

@@ -74,3 +74,45 @@ function status($status){
 	}
 	return $str;
 }
+
+
+/**
+ * 遍历获取目录下的指定类型的文件  百度编辑器
+ * @param $path
+ * @param array $files
+ * @return array
+ */
+function getfiles($path, $allowFiles, &$files = array()){
+    if (!is_dir($path)) return null;
+    if(substr($path, strlen($path) - 1) != '/') $path .= '/';
+    $handle = opendir($path);
+    while (false !== ($file = readdir($handle))) {
+        if ($file != '.' && $file != '..') {
+            $path2 = $path . $file;
+            if (is_dir($path2)) {
+                getfiles($path2, $allowFiles, $files);
+            } else {
+                if (preg_match("/\.(".$allowFiles.")$/i", $file)) {
+                    $files[] = array(
+                        'url'=> substr($path2, strlen($_SERVER['DOCUMENT_ROOT'])),
+                        'mtime'=> filemtime($path2)
+                    );
+                }
+            }
+        }
+    }
+    return $files;
+}
+
+function getModelById($modelId = ' '){
+	if(!$modelId || $modelId == ''){
+		return false;
+	}
+	//todo 这里的Model类型应该是从数据库缓存后获得，目前只有1-活动 2-通知
+	if($modelId == 1){
+		return "Events";
+	}
+	if($modelId == 2){
+		return "Notices";
+	}
+}

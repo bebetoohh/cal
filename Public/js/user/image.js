@@ -15,8 +15,9 @@ $(function(){
 				$("#upload_org_code_img").attr("src",obj.data);
 				$("#file_upload_image").attr('value',obj.data);
 				$("#upload_org_code_img").show();
+				
 			}else{
-				alert("上传失败");
+				alert("上传失败,你可以从已有图库中选择");
 			}
 		},
 	});

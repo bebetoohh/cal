@@ -10,4 +10,7 @@ return array(
 	'DB_USER'	 => 'root',
 	'DB_PWD'	 => '87281682',
 	'DB_PREFIX'	 => 'cal_',
+
+
+	'LOAD_EXT_CONFIG' => array('UE'=>'ueditor'),
 );

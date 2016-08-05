@@ -7,9 +7,8 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="./Public/css/bootstrap.css">
     <link rel="stylesheet" href="./Public/css/user.css">
-    <link rel="stylesheet" href="./Public/css/calendar.css" />
-    <link rel="stylesheet" href="./Public/css/custom_2.css" />
-    <script src="./Public/js/modernizr.custom.63321.js"></script>
+    <link rel="stylesheet" href="./Public/js/uploadify/bootstrap-switch.css" />
+    <link rel="stylesheet" href="./Public/js/uploadify/uploadify.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -26,12 +25,12 @@
             <div class="col-md-9" id="main">
                 <div class="data">
                     <!-- 活动预告表单 开始 -->
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" method="post" id="cal-form">
                         <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 control-label">活动类型</label>
+                            <label for="cid" class="col-sm-2 control-label">活动类型</label>
                             <div class="col-sm-10">
                                 <label class="radio-inline">
-                                    <input type="radio" name="cid" id="cid1" value="1"> 学术
+                                    <input type="radio" name="cid" id="cid1" value="1" checked="checked"> 学术
                                 </label>
                                 <label class="radio-inline">
                                     <input type="radio" name="cid" id="cid2" value="2"> 文化
@@ -45,9 +44,9 @@
                             <label for="bid" class="col-sm-2 control-label">品牌/栏目</label>
                             <div class="col-sm-3">
                                 <select class="form-control" id="bid" name="bid">
-                                    <option>请选择……</option>
+                                    <option value="">请选择……</option>
                                     <volist name="brands" id="vo">
-                                        <option value="{$vo.bid}">{$vo.name}</option>
+                                        <option value="{$vo.bid}" data-thumb="{$vo.thumb}">{$vo.name}</option>
                                     </volist>
                                 </select>
                                 <a href="{:U('Brands/index')}">管理自有品牌/栏目</a>
@@ -60,76 +59,77 @@
                         <div class="form-group">
                             <label for="title" class="col-sm-2 control-label">活动名称</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="title" id="title" placeholder="中国经济走向分析">
+                                <input type="text" class="form-control" name="title" id="title" placeholder="请填写活动标题" value="学术活动测试文档">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 control-label">上传或选择题图</label>
+                            <label for="thumb" class="col-sm-2 control-label">上传或选择题图</label>
                             <div class="col-sm-10">
-                                <input type="file" class="form-control" id="inputPassword3" placeholder="Password"><span>尺寸为：800px*450px</span>
+                                <input id="file_upload" type="file" multiple="true">
+                                <img style="display: none" id="upload_org_code_img" src="" width="150" height="150">
+                                <input id="file_upload_image" name="thumb" type="hidden" multiple="true" value="">
                                 <div class="row radio-pic" style="padding-top: 20px;">
+                                    <div class="col-sm-3" id="userthumb" style="display:none;">
+                                        <label class="thumbnail">
+                                            <img src="__PUBLIC__/img/pic1.jpg" alt="...">
+                                            <input type="radio" name="thumbno" value="1"> <span>学术活动</span>
+                                        </label>
+                                    </div>
                                     <div class="col-sm-3">
                                         <label class="thumbnail">
                                             <img src="__PUBLIC__/img/pic1.jpg" alt="...">
-                                            <input type="radio" name="tt"> 学术活动
+                                            <input type="radio" name="thumbno" value="1"> 学术活动
                                         </label>
                                     </div>
                                     <div class="col-sm-3">
                                         <label class="thumbnail">
                                             <img src="__PUBLIC__/img/pic2.jpg" alt="...">
-                                            <input type="radio" name="tt"> 学术活动
+                                            <input type="radio" name="thumbno" value="2"> 学术活动
                                         </label>
                                     </div>
                                     <div class="col-sm-3">
                                         <label class="thumbnail">
                                             <img src="__PUBLIC__/img/pic3.jpg" alt="...">
-                                            <input type="radio" name="tt"> 学术活动
+                                            <input type="radio" name="thumbno" value="3"> 学术活动
                                         </label>
                                     </div>
                                     <div class="col-sm-3">
                                         <label class="thumbnail">
                                             <img src="__PUBLIC__/img/pic4.jpg" alt="...">
-                                            <input type="radio" name="tt"> 学术活动
+                                            <input type="radio" name="thumbno" value="4"> 学术活动
                                         </label>
                                     </div>
                                     <div class="col-sm-3">
                                         <label class="thumbnail">
                                             <img src="__PUBLIC__/img/pic5.jpg" alt="...">
-                                            <input type="radio" name="tt"> 学术活动
+                                            <input type="radio" name="thumbno" value="5"> 学术活动
                                         </label>
                                     </div>
                                     <div class="col-sm-3">
                                         <label class="thumbnail">
                                             <img src="__PUBLIC__/img/pic6.jpg" alt="...">
-                                            <input type="radio" name="tt"> 学术活动
+                                            <input type="radio" name="thumbno" value="6"> 学术活动
                                         </label>
                                     </div>
                                     <div class="col-sm-3">
                                         <label class="thumbnail">
                                             <img src="__PUBLIC__/img/pic1.jpg" alt="...">
-                                            <input type="radio" name="tt"> 学术活动
+                                            <input type="radio" name="thumbno"> 学术活动
                                         </label>
                                     </div>
                                     <div class="col-sm-3">
                                         <label class="thumbnail">
                                             <img src="__PUBLIC__/img/pic2.jpg" alt="...">
-                                            <input type="radio" name="tt"> 学术活动
+                                            <input type="radio" name="thumbno"> 学术活动
                                         </label>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 control-label">活动海报</label>
+                            <label for="content" class="col-sm-2 control-label">活动内容</label>
                             <div class="col-sm-10">
-                                <input type="file" class="form-control" id="inputPassword3">
-                                <span>尺寸为：800px宽，大小不超过1024K</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 control-label">活动内容</label>
-                            <div class="col-sm-10">
-                                <textarea class="form-control" rows="3"></textarea>
+                                <script id="content" name="content" type="text/plain"></script>
                             </div>
                         </div>
                         <div class="form-group">
@@ -139,7 +139,14 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 control-label">承办单位</label>
+                            <label for="inputPassword3" class="col-sm-2 control-label">承办单位（审核方）</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" placeholder="如不填，默认为承办单位" value=" {$_SESSION['calUser']['department']|getDepartmentById}" disabled="disabled">
+                                <input type="hidden" name="did" value="{$_SESSION['calUser']['department']}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">主办单位</label>
                             <div class="col-sm-10">
                                 <select class="form-control">
                                     <option>请选择……</option>
@@ -151,38 +158,24 @@
                                     <option value="">文艺活动</option>
                                     <option value="">体育活动</option>
                                 </select>
+                                
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 control-label">主办单位</label>
+                            <label for="end_time" class="col-sm-2 control-label">活动时间</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" placeholder="如不填，默认为承办单位">
+                                <input type="text" class="form-control" name="end_time" placeholder="">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 control-label">活动时间</label>
+                            <label for="address" class="col-sm-2 control-label">活动地点</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" placeholder="如不填，默认为承办单位">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 control-label">活动地点</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" placeholder="如不填，默认为承办单位">
+                                <input type="text" class="form-control" name="address" placeholder="">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"> Remember me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-default">Sign in</button>
+                                <button type="submit" class="btn btn-default"  id="cal-button-submit">提交</button>
                             </div>
                         </div>
                     </form>
@@ -196,83 +189,70 @@
     </div>
     <!-- 正文 结束 -->
     <include file="Public/footer" />
+    <script>
+    var SCOPE = {
+        'save_url': '{:U("Events/add")}',
+        'jump_url': '{:U("Index/contentlist")}',
+        'ajax_upload_image_url': '{:U("Events/ajaxuploadimage")}',
+        'ajax_upload_swf': '/Public/js/uploadify/uploadify.swf',
+    }
+    </script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="./Public/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="./Public/js/jquery.calendario.js"></script>
-    <script type="text/javascript" src="./Public/js/data.js"></script>
-    <script type="text/javascript">
-    $(function() {
-
-        var transEndEventNames = {
-                'WebkitTransition': 'webkitTransitionEnd',
-                'MozTransition': 'transitionend',
-                'OTransition': 'oTransitionEnd',
-                'msTransition': 'MSTransitionEnd',
-                'transition': 'transitionend'
-            },
-            transEndEventName = transEndEventNames[Modernizr.prefixed('transition')],
-            $wrapper = $('#custom-inner'),
-            $calendar = $('#calendar'),
-            cal = $calendar.calendario({
-                onDayClick: function($el, $contentEl, dateProperties) {
-
-                    if ($contentEl.length > 0) {
-                        showEvents($contentEl, dateProperties);
-                    }
-
-                },
-                caldata: codropsEvents,
-                displayWeekAbbr: true
-            }),
-            $month = $('#custom-month').html(cal.getMonthName()),
-            $year = $('#custom-year').html(cal.getYear());
-
-        $('#custom-next').on('click', function() {
-            cal.gotoNextMonth(updateMonthYear);
-        });
-        $('#custom-prev').on('click', function() {
-            cal.gotoPreviousMonth(updateMonthYear);
-        });
-
-        function updateMonthYear() {
-            $month.html(cal.getMonthName());
-            $year.html(cal.getYear());
-        }
-
-        // just an example..
-        function showEvents($contentEl, dateProperties) {
-
-            hideEvents();
-
-            var $events = $('<div id="custom-content-reveal" class="custom-content-reveal"><h4>Events for ' + dateProperties.monthname + ' ' + dateProperties.day + ', ' + dateProperties.year + '</h4></div>'),
-                $close = $('<span class="custom-content-close"></span>').on('click', hideEvents);
-
-            $events.append($contentEl.html(), $close).insertAfter($wrapper);
-
-            setTimeout(function() {
-                $events.css('top', '0%');
-            }, 25);
-
-        }
-
-        function hideEvents() {
-
-            var $events = $('#custom-content-reveal');
-            if ($events.length > 0) {
-
-                $events.css('top', '100%');
-                Modernizr.csstransitions ? $events.on(transEndEventName, function() {
-                    $(this).remove();
-                }) : $events.remove();
-
-            }
-
-        }
+    <script src="./Public/js/dialog/layer.js"></script>
+    <script src="./Public/js/dialog.js"></script>
+    <script src="./Public/js/user/common.js"></script>
+    <script src="./Public/js/ueditor/ueditor.config.js"></script>
+    <script src="./Public/js/ueditor/ueditor.all.js"></script>
+    <script>
+    var ue = UE.getEditor('content', {
+        // toolbars: [
+        //     ['fullscreen', 'source', 'undo', 'redo', 'bold', 'autotypeset', 'drafts', 'attachment', 'indent', ]
+        // ],
+        // serverUrl:'/Public/js/ueditor/php/controller.php'
+        serverUrl:'{:U("Upload/index")}',
 
     });
+    ue.ready(function() {
+        //设置编辑器的内容
+        ue.setContent('hello');
+        //获取html内容，返回: <p>hello</p>
+        // var html = ue.getContent();
+        //获取纯文本内容，返回: hello
+        // var txt = ue.getContentTxt();
+    });
+
     </script>
+    <script src="./Public/js/uploadify/jquery.uploadify.js"></script>
+    <script src="./Public/js/user/image.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#bid").change(function(){
+                target = $("#bid").find("option:selected");
+                console.log(target.attr("value"));
+                if(target.attr("value")==''){
+                    $("#userthumb").hide(200);
+                    $("#file_upload").show(200);
+                }else{
+                    var thumbSrc = target.attr("data-thumb");
+                    $("#userthumb").find("img").attr("src",thumbSrc);
+                    $("#userthumb").find("input").attr("checked","checked");
+                    $("#userthumb").find("span").text("品牌题图");
+                    $("#userthumb").show(200);
+                    $("#file_upload").hide(200);
+                }
+                
+                // var thumbText = $("#bid").find("option:selected").text();
+                
+
+                // console.log(selectText);
+
+            });
+        })
+    </script>
+
 </body>
 
 </html>
