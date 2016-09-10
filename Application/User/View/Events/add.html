@@ -72,55 +72,55 @@
                                     <div class="col-sm-3" id="userthumb" style="display:none;">
                                         <label class="thumbnail">
                                             <img src="__PUBLIC__/img/pic1.jpg" alt="...">
-                                            <input type="radio" name="thumbno" value="1"> <span>学术活动</span>
+                                            <input type="radio" name="thumb" value="1"> <span>学术活动</span>
                                         </label>
                                     </div>
                                     <div class="col-sm-3">
                                         <label class="thumbnail">
                                             <img src="__PUBLIC__/img/pic1.jpg" alt="...">
-                                            <input type="radio" name="thumbno" value="1"> 学术活动
+                                            <input type="radio" name="thumb" value="__PUBLIC__/img/pic1.jpg"> 学术活动
                                         </label>
                                     </div>
                                     <div class="col-sm-3">
                                         <label class="thumbnail">
                                             <img src="__PUBLIC__/img/pic2.jpg" alt="...">
-                                            <input type="radio" name="thumbno" value="2"> 学术活动
+                                            <input type="radio" name="thumb" value="__PUBLIC__/img/pic2.jpg"> 学术活动
                                         </label>
                                     </div>
                                     <div class="col-sm-3">
                                         <label class="thumbnail">
                                             <img src="__PUBLIC__/img/pic3.jpg" alt="...">
-                                            <input type="radio" name="thumbno" value="3"> 学术活动
+                                            <input type="radio" name="thumb" value="__PUBLIC__/img/pic3.jpg"> 学术活动
                                         </label>
                                     </div>
                                     <div class="col-sm-3">
                                         <label class="thumbnail">
                                             <img src="__PUBLIC__/img/pic4.jpg" alt="...">
-                                            <input type="radio" name="thumbno" value="4"> 学术活动
+                                            <input type="radio" name="thumb" value="__PUBLIC__/img/pic4.jpg"> 学术活动
                                         </label>
                                     </div>
                                     <div class="col-sm-3">
                                         <label class="thumbnail">
                                             <img src="__PUBLIC__/img/pic5.jpg" alt="...">
-                                            <input type="radio" name="thumbno" value="5"> 学术活动
+                                            <input type="radio" name="thumb" value="__PUBLIC__/img/pic5.jpg"> 学术活动
                                         </label>
                                     </div>
                                     <div class="col-sm-3">
                                         <label class="thumbnail">
                                             <img src="__PUBLIC__/img/pic6.jpg" alt="...">
-                                            <input type="radio" name="thumbno" value="6"> 学术活动
+                                            <input type="radio" name="thumb" value="__PUBLIC__/img/pic6.jpg"> 学术活动
                                         </label>
                                     </div>
                                     <div class="col-sm-3">
                                         <label class="thumbnail">
                                             <img src="__PUBLIC__/img/pic1.jpg" alt="...">
-                                            <input type="radio" name="thumbno"> 学术活动
+                                            <input type="radio" name="thumb" value="__PUBLIC__/img/pic1.jpg"> 学术活动
                                         </label>
                                     </div>
                                     <div class="col-sm-3">
                                         <label class="thumbnail">
                                             <img src="__PUBLIC__/img/pic2.jpg" alt="...">
-                                            <input type="radio" name="thumbno"> 学术活动
+                                            <input type="radio" name="thumb" value="__PUBLIC__/img/pic2.jpg"> 学术活动
                                         </label>
                                     </div>
                                 </div>
@@ -238,7 +238,7 @@
                 }else{
                     var thumbSrc = target.attr("data-thumb");
                     $("#userthumb").find("img").attr("src",thumbSrc);
-                    $("#userthumb").find("input").attr("checked","checked");
+                    $("#userthumb").find("input").attr("checked","checked").attr("value",thumbSrc);
                     $("#userthumb").find("span").text("品牌题图");
                     $("#userthumb").show(200);
                     $("#file_upload").hide(200);
