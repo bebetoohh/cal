@@ -7,12 +7,12 @@ $("#button-add").click(function(){
 // 提交form表单操作
 $("#cal-button-submit").click(function(){
 	var data = $("#cal-form").serializeArray();
+
 	postData = {};
 	$(data).each(function(i){
 		postData[this.name]=this.value;
 	})
-	console.log(postData['content']);
-	alert(0);
+
 	// 将获取到的数据post给服务器
 	url = SCOPE.save_url;
 	jump_url = SCOPE.jump_url;

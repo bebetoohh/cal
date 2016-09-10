@@ -89,12 +89,5 @@ class PublicController extends Controller{
 		$verify = new \Think\Verify();
 		$verify->entry(1);
 	}
-
-	// 退出登录
-	public function logout(){
-		session("calUser",null);
-		$this->success("退出成功");
-		// $this->redirect('Home/Index/index');
-	}
 	
 }
